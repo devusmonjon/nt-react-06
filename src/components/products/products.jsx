@@ -52,7 +52,9 @@ const Products = () => {
         <ul className="flex gap-4 text-[18px] overflow-x-auto scrollbar-hide py-4 px-4 scroll-snap">
           <li>
             <button
-              className="whitespace-nowrap py-1 px-4 rounded-[26px] bg-[#FF9900] border-[#FF9900] border-2 text-white duration-300 hover:bg-white hover:text-[#FF9900] outline-none active:bg-[#FF9900] focus:ring-2 ring-[#FF9900] ring-offset-2"
+              className={`${
+                category === "" ? "bg-[#FF9900]" : "text-[#FF9900]"
+              } whitespace-nowrap py-1 px-4 rounded-[26px] border-[#FF9900] border-2 text-white duration-300 hover:bg-white hover:text-[#FF9900] outline-none active:bg-[#FF9900] focus:ring-2 ring-[#FF9900] ring-offset-2`}
               onClick={() => {
                 setCategory("");
               }}
@@ -63,7 +65,9 @@ const Products = () => {
           {categories.map((cat) => (
             <li key={cat}>
               <button
-                className="whitespace-nowrap py-1 px-4 rounded-[26px] bg-[#FF9900] border-[#FF9900] border-2 text-white duration-300 hover:bg-white hover:text-[#FF9900] outline-none active:bg-[#FF9900] focus:ring-2 ring-[#FF9900] ring-offset-2"
+                className={`${
+                  category === cat ? "bg-[#FF9900]" : "text-[#FF9900]"
+                } whitespace-nowrap py-1 px-4 rounded-[26px]  border-[#FF9900] border-2 text-white duration-300 hover:bg-[#FF9900] hover:text-white outline-none active:bg-[#FF9900] focus:ring-2 ring-[#FF9900] ring-offset-2`}
                 onClick={() => {
                   setCategory(cat);
                 }}
@@ -74,17 +78,17 @@ const Products = () => {
           ))}
         </ul>
         <div className="flex flex-col sm:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center gap-4">
-          {products.length > 0 ? (
-            products.map((product) => (
-              <Product
-                key={product.id}
-                handleDelete={handleDelete}
-                {...product}
-              />
-            ))
-          ) : (
-            <h1>Loading...</h1>
-          )}
+          {products.length > 0
+            ? products.map((product) => (
+                <Product
+                  key={product.id}
+                  handleDelete={handleDelete}
+                  {...product}
+                />
+              ))
+            : [0, 0, 0, 0, 0, 0, 0, 0].map((_, i) => (
+                <Product loading={true} key={i} />
+              ))}
         </div>
         <button
           disabled={maxLimit <= limit || loading}
