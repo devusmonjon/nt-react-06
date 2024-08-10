@@ -67,7 +67,7 @@ const Products = () => {
               <button
                 className={`${
                   category === cat ? "bg-[#FF9900]" : "text-[#FF9900]"
-                } whitespace-nowrap py-1 px-4 rounded-[26px]  border-[#FF9900] border-2 text-white duration-300 hover:bg-[#FF9900] hover:text-white outline-none active:bg-[#FF9900] focus:ring-2 ring-[#FF9900] ring-offset-2`}
+                } whitespace-nowrap py-1 px-4 rounded-[26px]  border-[#FF9900] border-2 text-[#FF9900] duration-300 hover:bg-[#FF9900] hover:text-white outline-none active:bg-[#FF9900] focus:ring-2 ring-[#FF9900] ring-offset-2`}
                 onClick={() => {
                   setCategory(cat);
                 }}
