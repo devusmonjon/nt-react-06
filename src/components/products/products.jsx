@@ -74,7 +74,7 @@ const Products = () => {
                   setCategory(cat);
                 }}
               >
-                {cat}
+                {cat.split("-").join(" ")}
               </button>
             </li>
           ))}
