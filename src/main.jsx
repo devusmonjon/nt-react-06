@@ -4,30 +4,40 @@ import App from "./App.jsx";
 import "./index.css";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { BrowserRouter } from "react-router-dom";
 
 i18n.use(initReactI18next).init({
   resources: {
     ru: {
       translation: {
-        hello_world: "Привет мир",
+        catalog: "Каталог",
+        delivery: "Доставка",
+        terms: "Условия",
+        contacts: "Контакты",
       },
     },
     uz: {
       translation: {
-        hello_world: "Salom dunyo",
+        catalog: "Katalog",
+        delivery: "Yetkazib berish",
+        terms: "Shartlar",
+        contscts: "Aloqa",
       },
     },
   },
-  lng: "uz",
-  fallbackLng: "uz",
+  lng: "ru",
+  fallbackLng: "ru",
 
-  interpolation: {
-    escapeValue: false,
+  detection: {
+    order: ["localStorage", "navigator", "htmlTag", "path", "subdomain"],
+    lookupLocalStorage: "i18nextLng",
   },
 });
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <BrowserRouter basename="/">
+      <App />
+    </BrowserRouter>
   </StrictMode>
 );

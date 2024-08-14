@@ -54,7 +54,7 @@ const Products = () => {
             <button
               className={`${
                 category === "" ? "bg-[#FF9900] text-white" : "text-[#FF9900]"
-              } whitespace-nowrap py-1 px-4 rounded-[26px] border-[#FF9900] border-2 duration-300 hover:bg-white hover:text-[#FF9900] outline-none active:bg-[#FF9900] focus:ring-2 ring-[#FF9900] ring-offset-2`}
+              } whitespace-nowrap py-1 px-4 rounded-[26px] border-[#FF9900] border-2 duration-300 hover:bg-white hover:text-[#FF9900] outline-none active:bg-[#FF9900] focus:ring-2 ring-[#FF9900] ring-offset-2 active:text-white`}
               onClick={() => {
                 setCategory("");
               }}
