@@ -5,6 +5,7 @@ import Products from "./pages/products";
 import Catalog from "./pages/catalog";
 import Delivery from "./pages/delivery";
 import Contacts from "./pages/contacts";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   return (
@@ -24,9 +25,7 @@ const App = () => {
             <Theme
               children={
                 <>
-                  <div className="container">
-                    <h1>404 | Not Found</h1>
-                  </div>
+                  <NotFound />
                 </>
               }
             />

@@ -96,8 +96,8 @@ const items = [
 const CatalogItem = () => {
   return (
     <>
-      <p className="text-[36px] text font-[700] mb-11 px-20">Каталог</p>
-      <div className="grid gap-5 grid-cols-2 sm:grid-cols-2 px-20 md:grid-cols-3 lg:grid-cols-4 mb-12 items-center justify-center ">
+      <p className="text-[36px] text font-[700] mb-11">Каталог</p>
+      <div className="grid gap-5 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-12 items-center justify-center">
         {items?.map((el) => (
           <div key={el.id}>
             <div className="mb-[19px]">
@@ -107,18 +107,31 @@ const CatalogItem = () => {
                 alt=""
               />
             </div>
-            <div className="max-w-[250px] flex flex-col gap-[30px] pl-5">
-              <Link to={"/"} className="text-[18px] font-[700]">
+            <div className="flex flex-col gap-[30px] pl-5">
+              <h2 to={"/"} className="text-[18px] font-[700] whitespace-nowrap">
                 {el.them}
+              </h2>
+              <Link to={"/"} className="duration-300 hover:text-[#FF9900]">
+                {el.title}
               </Link>
-              <Link to={"/"}>{el.title}</Link>
-              <Link to={"/"} className="max-w-[200px]">
+              <Link
+                to={"/"}
+                className="whitespace-nowrap duration-300 hover:text-[#FF9900]"
+              >
                 {el.desc}
               </Link>
-              <Link to={"/"}>{el.info}</Link>
-              <Link to={"/"}>{el.collection}</Link>
-              <Link to={"/"}>{el.collection1}</Link>
-              <Link to={"/"}>{el.price}</Link>
+              <Link to={"/"} className="duration-300 hover:text-[#FF9900]">
+                {el.info}
+              </Link>
+              <Link to={"/"} className="duration-300 hover:text-[#FF9900]">
+                {el.collection}
+              </Link>
+              <Link to={"/"} className="duration-300 hover:text-[#FF9900]">
+                {el.collection1}
+              </Link>
+              <Link to={"/"} className="duration-300 hover:text-[#FF9900]">
+                {el.price}
+              </Link>
             </div>
           </div>
         ))}
