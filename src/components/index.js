@@ -5,3 +5,4 @@ export { default as Products } from "./products/products";
 export { default as Product } from "./product/product";
 export { default as Theme } from "./theme/theme";
 export { default as CatalogITem } from "./catalog/catalog";
+export { default as CartIcon } from "./cart-icon/cart-icon";

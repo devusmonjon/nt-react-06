@@ -18,7 +18,7 @@ const Products = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data.products);
+        setProducts(data.products.map((product) => ({ ...product, count: 1 })));
         setMaxLimit(data.total);
       })
       .finally(() => setLoading(false));
@@ -29,9 +29,6 @@ const Products = () => {
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
-  const handleDelete = (id) => {
-    setProducts(products.filter((product) => product.id !== id));
-  };
   const handleLoadMore = () => {
     setLoading(true);
     setLimit((prev) => (prev < maxLimit ? prev + 4 : prev));
@@ -46,6 +43,27 @@ const Products = () => {
       handleLoadMore();
     }
   }, [scroll]);
+
+  const handleIncrement = (id) => {
+    setProducts((prev) =>
+      prev.map((product) =>
+        product.id === id ? { ...product, count: product.count + 1 } : product
+      )
+    );
+  };
+  const handleDecrement = (id) => {
+    setProducts((prev) =>
+      prev.map((product) =>
+        product.id === id
+          ? { ...product, count: product.count > 1 ? product.count - 1 : 1 }
+          : product
+      )
+    );
+  };
+
+  const handleReset = () => {
+    setProducts((prev) => prev.map((product) => ({ ...product, count: 1 })));
+  };
   return (
     <section className="mt-[38px] pb-[100px]">
       <div className="container">
@@ -84,8 +102,11 @@ const Products = () => {
             ? products.map((product) => (
                 <Product
                   key={product.id}
-                  handleDelete={handleDelete}
+                  product={product}
                   {...product}
+                  handleIncrement={handleIncrement}
+                  handleDecrement={handleDecrement}
+                  handleReset={handleReset}
                 />
               ))
             : [0, 0, 0, 0, 0, 0, 0, 0].map((_, i) => (

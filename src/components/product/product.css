@@ -1,0 +1,4 @@
+.card-item:hover .card-desc,
+.card-item:hover .card-buttons {
+    transform: translateY(0);
+}

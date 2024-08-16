@@ -6,8 +6,25 @@ import Catalog from "./pages/catalog";
 import Delivery from "./pages/delivery";
 import Contacts from "./pages/contacts";
 import NotFound from "./pages/NotFound";
+import Cart from "./pages/cart";
+import { useEffect } from "react";
+import useCartStore from "./hooks/useCart";
+import Admin from "./pages/dashboard/admin";
+import Dashboard from "./pages/dashboard/dashboard";
+import User from "./pages/dashboard/user";
+import Login from "./pages/login";
 
 const App = () => {
+  const setCartItems = useCartStore((state) => state.setCartItems);
+
+  useEffect(() => {
+    if (localStorage.getItem("cart")) {
+      setCartItems(JSON.parse(localStorage.getItem("cart")));
+    } else {
+      localStorage.setItem("cart", JSON.stringify([]));
+    }
+  });
+
   return (
     <>
       <Routes>
@@ -19,6 +36,12 @@ const App = () => {
         <Route path="/catalog" element={<Theme children={<Catalog />} />} />
         <Route path="/delivery" element={<Theme children={<Delivery />} />} />
         <Route path="/contacts" element={<Theme children={<Contacts />} />} />
+        <Route path="/cart" element={<Theme children={<Cart />} />} />
+        <Route path="/login" element={<Theme children={<Login />} />} />
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="admin" element={<Admin />} />
+          <Route path="user" element={<User />} />
+        </Route>
         <Route
           path="*"
           element={
