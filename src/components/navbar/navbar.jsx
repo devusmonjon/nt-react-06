@@ -29,7 +29,7 @@ const Navbar = () => {
     <Fragment>
       <nav
         className={`py-[33px] bg-[#F8F8F8] sticky top-0 duration-300 ${
-          scrollY > 0 ? "shadow-md backdrop-blur-2xl bg-transparent" : ""
+          scrollY > 0 ? "shadow-md backdrop-blur-2xl bg-transparent z-10" : ""
         }`}
       >
         <div className="container hiddden md:flex items-center justify-between">
