@@ -36,7 +36,13 @@ const Products = () => {
       }?limit=4`
     )
       .then((res) => res.json())
-      .then((data) => setMoreLikeThis(data.products));
+      .then((data) => {
+        setMoreLikeThis(
+          data.products
+            .map((product) => ({ ...product, count: 1 }))
+            .filter((product) => product.id !== id)
+        );
+      });
   }, [category]);
   console.log(moreLikeThis);
 
@@ -71,14 +77,30 @@ const Products = () => {
       prev.count > 1 ? { ...prev, count: prev.count - 1 } : prev
     );
   };
-  console.log(product?.category);
+
+  const handleManyIncrement = (id) => {
+    setMoreLikeThis((prev) =>
+      prev.map((product) =>
+        product.id === id ? { ...product, count: product.count + 1 } : product
+      )
+    );
+  };
+
+  const handleManyDecrement = (id) => {
+    setMoreLikeThis((prev) =>
+      prev.map((product) =>
+        product.id === id ? { ...product, count: product.count - 1 } : product
+      )
+    );
+  };
+  console.log(moreLikeThis);
 
   return (
     <div>
       <div className="container">
         <Link
           to="/"
-          className="sm:w-max w-[90%] my-4 text-xl bg-[#FF9900] px-5 py-2.5 flex justify-center items-center rounded-lg text-white border-[#FF9900] border-2 duration-300 hover:bg-white hover:text-[#FF9900] outline-none active:bg-[#FF9900] focus:ring-2 ring-[#FF9900] ring-offset-2"
+          className="my-4 text-xl bg-[#FF9900] px-5 py-2.5 flex justify-center items-center w-max rounded-lg text-white border-[#FF9900] border-2 duration-300 hover:bg-white hover:text-[#FF9900] outline-none active:bg-[#FF9900] focus:ring-2 ring-[#FF9900] ring-offset-2"
         >
           Назад
         </Link>
@@ -157,7 +179,13 @@ const Products = () => {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {moreLikeThis?.map((product) => (
-              <Product key={product?.id} product={product} {...product} />
+              <Product
+                key={product?.id}
+                product={product}
+                {...product}
+                handleIncrement={handleManyIncrement}
+                handleDecrement={handleManyDecrement}
+              />
             ))}
           </div>
         </div>
