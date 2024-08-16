@@ -28,7 +28,7 @@ const Products = () => {
       setImageUrl(null);
       setAddedToCart(false);
     };
-  }, []);
+  }, [id]);
   useEffect(() => {
     fetch(
       `https://dummyjson.com/products/${
