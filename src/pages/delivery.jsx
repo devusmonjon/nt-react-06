@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const Delivery = () => {
   return (
     <div className="container">
@@ -90,4 +92,4 @@ const Delivery = () => {
   );
 };
 
-export default Delivery;
+export default memo(Delivery);

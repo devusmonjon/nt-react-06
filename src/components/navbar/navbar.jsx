@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import Logo from "../logo/logo";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, memo, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaShoppingCart } from "react-icons/fa";
 import useCartStore from "../../hooks/useCart";
@@ -112,4 +112,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

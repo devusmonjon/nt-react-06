@@ -13,6 +13,7 @@ import Admin from "./pages/dashboard/admin";
 import Dashboard from "./pages/dashboard/dashboard";
 import User from "./pages/dashboard/user";
 import Login from "./pages/login";
+import Auth from "./pages/auth";
 
 const App = () => {
   const setCartItems = useCartStore((state) => state.setCartItems);
@@ -38,9 +39,11 @@ const App = () => {
         <Route path="/contacts" element={<Theme children={<Contacts />} />} />
         <Route path="/cart" element={<Theme children={<Cart />} />} />
         <Route path="/login" element={<Theme children={<Login />} />} />
-        <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="admin" element={<Admin />} />
-          <Route path="user" element={<User />} />
+        <Route path="/" element={<Theme children={<Auth />} />}>
+          <Route path="dashboard" element={<Dashboard />}>
+            <Route path="admin" element={<Admin />} />
+            <Route path="user" element={<User />} />
+          </Route>
         </Route>
         <Route
           path="*"

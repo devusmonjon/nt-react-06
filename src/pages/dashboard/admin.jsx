@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { Outlet } from "react-router-dom";
 
 const admin = () => {
   return <div>Admin</div>;
 };
 
-export default admin;
+export default memo(admin);

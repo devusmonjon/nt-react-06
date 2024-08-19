@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Link } from "react-router-dom";
 
 const image1 = "/Rectangle 66.png";
@@ -140,4 +141,4 @@ const CatalogItem = () => {
   );
 };
 
-export default CatalogItem;
+export default memo(CatalogItem);

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import useCartStore from "../../hooks/useCart";
 import CartIcon from "../cart-icon/cart-icon";
 import "./product.css";
+import { memo } from "react";
 
 const Product = ({
   id,
@@ -83,4 +84,4 @@ const Product = ({
   );
 };
 
-export default Product;
+export default memo(Product);

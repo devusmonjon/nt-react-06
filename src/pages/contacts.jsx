@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const Contacts = () => {
   return (
     <div className="container">
@@ -30,4 +32,4 @@ const Contacts = () => {
   );
 };
 
-export default Contacts;
+export default memo(Contacts);

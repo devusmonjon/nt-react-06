@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useCartStore from "../hooks/useCart";
+import { memo } from "react";
 
 const Cart = () => {
   const cart = useCartStore((state) => state.cart);
@@ -95,4 +96,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default memo(Cart);

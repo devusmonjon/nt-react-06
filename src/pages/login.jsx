@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -112,4 +112,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default memo(Login);

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
@@ -29,4 +30,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default memo(Dashboard);

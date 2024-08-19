@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const CartIcon = () => {
   return (
     <svg
@@ -35,4 +37,4 @@ const CartIcon = () => {
   );
 };
 
-export default CartIcon;
+export default memo(CartIcon);

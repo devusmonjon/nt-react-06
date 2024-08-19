@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useCartStore from "../hooks/useCart";
 import { Product } from "../components";
@@ -194,4 +194,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default memo(Products);

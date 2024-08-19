@@ -1,5 +1,6 @@
 import Navbar from "../navbar/navbar";
 import Footer from "../footer/footer";
+import { memo } from "react";
 
 const Theme = ({ children }) => {
   return (
@@ -12,4 +13,4 @@ const Theme = ({ children }) => {
   );
 };
 
-export default Theme;
+export default memo(Theme);

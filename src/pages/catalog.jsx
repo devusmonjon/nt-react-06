@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { CatalogITem } from "../components";
 
 const Catalog = () => {
@@ -8,4 +9,4 @@ const Catalog = () => {
   );
 };
 
-export default Catalog;
+export default memo(Catalog);

@@ -1,34 +1,26 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import Product from "../product/product";
+import useFetch from "../../hooks/useFetch";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
   const [limit, setLimit] = useState(8);
-  const [loading, setLoading] = useState(false);
   const [maxLimit, setMaxLimit] = useState(0);
-  const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("");
   const [scroll, setScroll] = useState(0);
+  const [cLoading, setLoading] = useState(true);
 
+  const { data: products, loading } = useFetch(
+    `https://dummyjson.com/products/${category ? `category/${category}` : ""}`,
+    { limit },
+    [limit, category]
+  );
+  const { data: categories } = useFetch("/products/category-list", {}, []);
   useEffect(() => {
-    fetch(
-      `https://dummyjson.com/products/${
-        category ? `category/${category}` : ""
-      }?limit=${limit}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data.products.map((product) => ({ ...product, count: 1 })));
-        setMaxLimit(data.total);
-      })
-      .finally(() => setLoading(false));
-    console.log(products);
-  }, [limit, category]);
-  useEffect(() => {
-    fetch("https://dummyjson.com/products/category-list")
-      .then((res) => res.json())
-      .then((data) => setCategories(data));
-  }, []);
+    setLoading(false);
+    setMaxLimit(products?.total || 0);
+  }, [products]);
+
+  useEffect(() => {}, []);
   const handleLoadMore = () => {
     setLoading(true);
     setLimit((prev) => (prev < maxLimit ? prev + 4 : prev));
@@ -80,7 +72,7 @@ const Products = () => {
               All
             </button>
           </li>
-          {categories.map((cat) => (
+          {categories?.map((cat) => (
             <li key={cat}>
               <button
                 className={`${
@@ -98,8 +90,8 @@ const Products = () => {
           ))}
         </ul>
         <div className="flex flex-col sm:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center gap-4">
-          {products.length > 0
-            ? products.map((product) => (
+          {products?.products?.length > 0
+            ? products?.products?.map((product) => (
                 <Product
                   key={product.id}
                   product={product}
@@ -114,14 +106,14 @@ const Products = () => {
               ))}
         </div>
         <button
-          disabled={maxLimit <= limit || loading}
+          disabled={maxLimit <= limit || cLoading}
           className="w-full bg-green-500 text-white font-bold py-2 mt-16 disabled:bg-gray-300 duration-300"
           onClick={() => {
             handleLoadMore();
           }}
         >
           {maxLimit > limit
-            ? loading
+            ? cLoading
               ? "Загрузка..."
               : `Загрузить еще (${maxLimit - limit})`
             : "Загружено"}
@@ -131,4 +123,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default memo(Products);

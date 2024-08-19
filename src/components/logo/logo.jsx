@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const Logo = ({ large }) => {
   return (
     <>
@@ -133,4 +135,4 @@ const Logo = ({ large }) => {
   );
 };
 
-export default Logo;
+export default memo(Logo);
